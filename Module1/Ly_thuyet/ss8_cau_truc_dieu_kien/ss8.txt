@@ -1,0 +1,49 @@
+Câu lệnh điều khiển(control statement): thay đổi luồng thực thi của chương trình
+	+ Điều kiện : if, switch case, toán tử 3 ngôi
+	+ Lặp (loop): for , while, do while
+	+ Nhảy : break, continue, return
+Câu lệnh điều kiện dùng để thực thi 1 cái nhiệm vụ nào đó dựa trên một điều kiện cho trước
+Các nhóm câu lệnh điều kiện 
+	+ If 
+	+ switch-case
+	+ toán tử 3 ngôi 
+
+If thiếu : chỉ có if không có else
+If else : if đủ
+If else if else... else : if bậc thang
+If lồng nhau: trong khối if hoặc else có thêm các khối if
+
+Toán tử 3 ngôi
+	(bt_dk)?bt1:bt2
+	+bt1: thực thi khi là đúng
+	+bt2: thực thi khi là sai
+phân biệt if else và switch case
+If else là so sánh hết
+còn switch case là 3 dấu bằng
+
+
+Loop:
++Các cấu trúc lặp: 
+	for ,while, do while
++Cú pháp for
+	for(bt1,bt2,bt3)
+bt1 khởi tạo
+bt2 điều kiện
+bt3 tang giảm
+bt4 là 
+
+So sánh for và wihle , do while 
+for và while ktra dk trước khi lặp
+do while lặp rồi mới ktra đk
+
+
+break là dung trong vl và swich case
+continue là dung trong vòng lặp
+
+
+
+
+
+
+
+

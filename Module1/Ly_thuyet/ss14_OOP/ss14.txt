@@ -1,0 +1,47 @@
+OOP : là một kỹ thuật đưa các đối tượnwg thực tế vào trong lập trình1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+mỗi mứng dung phần mềm được xem như là một thế giới thực bao gồm các đối tượng và các đối tượng
+có sự tương ác với nhau
+VD: phần memefm quẩn lý sv => phần mềm gôm cóc các đối tượng: sinh viên, phòng quản lý, sinh viên, giáo viên
+
+- Object( đối tượng) bao gồm có:
+	+ Đắc iểm ( thuộc tính ) ví dụ sinh viên ( tên, rn, email, địa chỉ.. 
+	+ Hành vi ( hành động của đối tượng) : ví dụ sinh viên ( học, ăn, đi lại, làm bài tập,thi)
+	+ hành vụ gọi là phương thức
+
+Class: là một khuôn mẫu quy định những đặc điểm và hành vi chung một nhóm các đối tượng
+Object : là một thể hiện ( instance) cụ thể của một class có đặc điểm và hành vi cụ thể

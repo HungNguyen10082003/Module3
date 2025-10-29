@@ -1,0 +1,21 @@
+
+
+Mảng là 1 biến đặc biệt có thể lưu trữ nhiều giá trị
+Các giá trị trong mangr được gọi là phần tử 
+Các phần tử được sắp xếp liền kề nhau trong vùng nhớ
+Mỗi một phần tử có 1 chỉ số (index): phần tử đầu tiên có index = 0 và phần tử cuối cùng có index= length - 1
+length là độ dài của mảng ( số phần tử có trong mảng )
+
+lưu ý: mảng trong js có thể lưu trữ các phần tử có kiểu dữ lieu khác nhau 
+
+
+cú pháp let array = [value1,value2,...]
+let array = new Array(value 1, value2,...)
+
+for 				for in 				for of
+có thể duyệt từ đầu đến 	từ đầu đến cuối			xuôi từ đầu đến cuối
+cuối tại vị trí bất kỳ		không thể thay đổi được   	không thể thay đổi index
+và ngược lại			giá trị các pt trong mảng	
+- có thể thay đổi các giá trị
+các phần tử trong mảng
+mảng 2 chiều : là mảng 1 chiều mà các phần tử bên trong là mảng 1 chiều

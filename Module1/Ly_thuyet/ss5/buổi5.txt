@@ -1,0 +1,14 @@
+các thuộc tính cơ bản của form
++ action: địa chir sever
++method: phương thức gửi dữ lieu lên sever có 2 loại(get,post)
+
+Get					Post
+dữ lieu gửi lên thanh url		Gửi ngầm
+chỉ gửi dữ lieu kiểu text		các kiểu dữ lieu(text,file,video,audio)
+tốc độ nhanh hơn			Chậm hơn(do phải ã hóa dữ lieu)
+kém bảo mật				bảo mật hơn
+
+<button>: lưu ý có type có 3 loại
++ submit: gửi dl lên sever
++ button : không gửi lên sever, mà chỉ dung gọi các sự kiện
++ Reset : xóa dl của form

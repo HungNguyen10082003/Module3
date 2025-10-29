@@ -1,0 +1,13 @@
+VCS version control system: Hệ thống điều khieenr phiên bản mã nguồn
+- lữu trữ mà nguồn
+- xem ls thay đổi
+- khôi phục các file bị xóa
+- giúp công tác giữa các thành viên trong nhóm
+
+Git và GitHub
+Git: - là phần mềm VCS theo hình thức phân tán
+GitHub:- là nơi cung cấp dịch vụ để lữu trữ mã nguồn
+
+Repository: là khô lữu trữ mà nguồn
+có 2 loại: Remote repository: Nơi lưu trữ từ xa ( máy chủ sever)
+	:Local repository: Nơi lưu trữ trên máy LTV

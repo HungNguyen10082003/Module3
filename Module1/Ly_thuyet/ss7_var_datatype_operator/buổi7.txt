@@ -1,0 +1,33 @@
+-Variable(biến): là 1 tên gọi đại diện cho 1 vùng nhớ để lưu trữ giá trị
+-Biến: -giá trị của biến có thể thay đổi được
+	-cần phải khai báo biến trước khi sử dung
+	-Lưu ý: biến trong js có kiểu là biến động( kiểu dữ liệu có thể thay đổi được)
+	
+Khai báo biến : +var
+		+let
+		+const
+quy tắc đặt tên biến: +Phải bắt đầu = chữ($,_)
+			+ không được trùng với từ khóa
+			+ không được viết tắt, tên biến phải có ý nghĩa
+			+ nên sử dung quy tắc camelCase
+		Hằng số: không thể thay đổi được giá trị và cần phải gán giá trị tại thời điểm khai báo
+			=> cần đặt tên hằng: const HANG_SO= value
+		
+var						let 
+có thể khai báo trùng tên biến		không thể
+có thể sử dụng trước rồi khai báo sau	không thể
+phạm vi function scope(trong hàm )	phạm vị sử dụng là blocl scope( phạm vi trong dấu {})
+
+
+Kiểu dữ liệu trong JS
+ chia làm 2 loại
+	+ nguyên thủy : number,string.boolean,null,underfined,symbol
+	+ tham chiếu: object, function
+
+Các loại toán tử:
++ so sánh
++ logic
++ gán
++ type of
++ cộng chuỗi
+

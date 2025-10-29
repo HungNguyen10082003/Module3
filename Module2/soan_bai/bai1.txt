@@ -1,0 +1,37 @@
+JAVA : là nnlt hướng đc sử dung rộng rãi, sở hữu bởi Oracle
+JDK : Java Development Kit : bộ công cụ hỗ trợ lt java bao gồm 
+	+ Compiler : trình biên dịch => cụ thể là Javac
+	+ Debuger : trình gỡ rối
+	+ JRE : Môi trường thực thi code java 
+
+JRE : Java Runtime Enviroment bao gồm : 
+	+ thư viện
+	+ JVM máy  java 
+	+ JVM : Java Virtual Machine => mỗi hệ điều hành sẽ có 1 máy java
+Biên dịch : dịch từ một file này sang một file khác,khi chạy lại chương trình không cần dịch lại
+Thông dịch : dịch từng dòng code để thực thi và khi chạy lại chương trình sẽ dịch lại từ đầu
+Java : là ngôn ngữ vừa biên dịch và thông dịch
+	+ Biên dịch : dịch file.java => file.class
+	+thông dịch : JVM dịch từng dòng code trong file. class để thực thi
+
+Kiểu dữ liệu
+	Chia làm 2 nhóm + Kiểu nguyên thủy : Java 4 số nguyên
+							+ byte ,
+short,
+int,
+long
+						2 thực + float,
+ double
+						2 khác +char,
+boolean.
+Đối tượng + string
+
+
+
+
+
+
+
+
+
+						

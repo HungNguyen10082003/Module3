@@ -1,0 +1,18 @@
+tham số được khai báo trong dấu () ở phần đầu của hàm 
+đối số là khi gọi hàm truyền giá trị cụ thể vào cho tham số, thì giá trị cụ thể đó được gọi là đối số.
+
+phạm vi của biến: + Biến cục bộ (local) là biến được khai báo ở trong hàm kể cả tham số
+		+ phạm vi sử dung chỉ nằm trong hàm
+		+ biến toàn cục ( global) là biến được khai báo ở bên ngoài hàm, có thể sử dung ở mọi chỗ
+pham loại hàm : có 2 loại hàm:
+		+ hàm không có return: hàm sau thực hiện công việc sẽ không trả về giá trị cho nơi gọi hàm
+		+ hàm có return trả về một giá trị cho nơi gọi hàm ( nếu không có giá trị mà chỉ có mỗi từ khóa return thì mục địch là để 
+			kết thúc hàm
+Không cho phép ruy cập vào thông tin đối tuingj, phải qua trung gian
+
+
+
+
+
+
+

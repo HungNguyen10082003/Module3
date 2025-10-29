@@ -1,0 +1,22 @@
+JS: NNLT hướng sự kiện
++ được viết trên web(html) client(người dung)
+	- thay đổi nd
+	- thay đổi giao diện
+	-tang tính tương tác người dùng
++ viết ở sever backend(Node.js)
+
+các cách nhúng js vào html 3 cách nhúng
++ inline: viết trực tiếp code js trong thẻ html
++ internal: viết code js trong cặp thẻ <script>
++ tạo file.js: nhúng vào trang html thông qua thẻ
+
+
+4 các hàm hiện thỉ thông báo trong JS
+Output: 
+	+alert(): hộp thoại
+	+document.write()
+	+console.log
+Input: 
+	+prompt(): cho 
+	+confirm(): xác nhận -> true/ false
+	+ document.getElementByUd('id')
