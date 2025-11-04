@@ -85,3 +85,32 @@ FROM Student S join Mark M on S.StudentId = M.StudentId join Subject Sub on M.Su
 SELECT S.StudentId, S.StudentName, Sub.SubName, M.Mark
 FROM Student S join Mark M on S.StudentId = M.StudentId join Subject Sub on M.SubId = Sub.SubId
 WHERE Sub.SubName = 'CF';
+
+SELECT Address, COUNT(StudentId) AS 'Số lượng học viên'
+FROM Student
+GROUP BY Address;
+
+SELECT S.StudentId,S.StudentName, AVG(Mark)
+FROM Student S join Mark M on S.StudentId = M.StudentId
+GROUP BY S.StudentId, S.StudentName;
+
+SELECT S.StudentId,S.StudentName, AVG(Mark)
+FROM Student S join Mark M on S.StudentId = M.StudentId
+GROUP BY S.StudentId, S.StudentName;
+
+-- Sử dụng having để xét điều kiện điểm trung bình các môn học phải lớn hơn 15
+SELECT S.StudentId,S.StudentName, AVG(Mark)
+FROM Student S join Mark M on S.StudentId = M.StudentId
+GROUP BY S.StudentId, S.StudentName
+HAVING AVG(Mark) > 15;
+
+-- Hiển thị danh sách điểm trung bình của các học viên
+SELECT S.StudentId, S.StudentName, AVG(Mark)
+FROM Student S join Mark M on S.StudentId = M.StudentId
+GROUP BY S.StudentId, S.StudentName;
+
+-- Sử dụng Having và All để tìm học viên có điểm trung bình lớn nhất
+SELECT S.StudentId, S.StudentName, AVG(Mark)
+FROM Student S join Mark M on S.StudentId = M.StudentId
+GROUP BY S.StudentId, S.StudentName
+HAVING AVG(Mark) >= ALL (SELECT AVG(Mark) FROM Mark GROUP BY Mark.StudentId);
