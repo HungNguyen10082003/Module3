@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Định dạng văn bản với CSS</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        color: #222;
+      }
+      .title {
+        font-size: 2rem;
+        color: #2a6;
+        margin-bottom: 8px;
+      }
+      .lead {
+        font-size: 1.1rem;
+        color: #333;
+        line-height: 1.6;
+      }
+      .highlight {
+        color: green;
+        background: #f0fff0;
+        padding: 4px;
+        display: inline-block;
+      }
+      .muted {
+        color: #777;
+        font-size: 0.9rem;
+      }
+      .uppercase {
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .small-caps {
+        font-variant: small-caps;
+      }
+      .emphasis {
+        font-weight: 700;
+        font-style: italic;
+      }
+      .shadow {
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+      }
+      .center {
+        text-align: center;
+      }
+      .justify {
+        text-align: justify;
+      }
+      .nowrap {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 320px;
+      }
+      .spacing {
+        letter-spacing: 2px;
+        word-spacing: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="title shadow">Tiêu đề: Định dạng văn bản</h1>
+    <p class="lead">
+      Đây là đoạn văn bản dùng lớp <code>lead</code> để điều chỉnh kích thước và
+      khoảng cách dòng.
+    </p>
+    <p class="highlight">Văn bản dùng internal CSS</p>
+    <p class="muted">Chú thích nhỏ, màu nhạt.</p>
+    <p class="uppercase">Viết hoa toàn bộ</p>
+    <p class="small-caps">Small caps kiểu chữ</p>
+    <p class="emphasis">Nổi bật: in đậm & nghiêng</p>
+    <p class="center">Đoạn căn giữa</p>
+    <p class="justify">
+      Đoạn văn bản căn đều, dùng để minh họa thuộc tính
+      <code>text-align: justify</code>. Thêm vài từ để thấy hiệu ứng.
+    </p>
+    <p class="nowrap">
+      Dòng dài sẽ bị cắt nếu vượt quá chiều rộng hiển thị (nowrap + ellipsis):
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </p>
+    <p class="spacing">Khoảng chữ và từ được tăng lên để dễ đọc.</p>
+  </body>
+</html>
+<!-- ...existing code... -->
