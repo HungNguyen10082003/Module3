@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Product Discount Calculator</title>
+    <style>
+      body {
+        font-family: system-ui, Segoe UI, Arial;
+        margin: 24px;
+        background: #f7f8fb;
+        color: #111;
+      }
+      .card {
+        max-width: 760px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+      }
+      h1 {
+        font-size: 1.25rem;
+        margin: 0 0 12px;
+      }
+      .row {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      label {
+        display: block;
+        font-size: 0.85rem;
+        color: #333;
+        margin-bottom: 6px;
+      }
+      input[type="text"],
+      input[type="number"] {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+      }
+      .col {
+        flex: 1 1 200px;
+        min-width: 160px;
+      }
+      .actions {
+        display: flex;
+        gap: 8px;
+        margin-top: 12px;
+      }
+      button {
+        padding: 8px 12px;
+        border-radius: 8px;
+        border: 0;
+        cursor: pointer;
+      }
+      .btn-primary {
+        background: #2a6;
+        color: #fff;
+      }
+      .btn-muted {
+        background: #f0f0f0;
+      }
+      .result {
+        margin-top: 16px;
+        padding: 12px;
+        border-radius: 8px;
+        background: #f8fff8;
+        border: 1px solid #e6f4ea;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 12px;
+      }
+      th,
+      td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+        font-size: 0.95rem;
+      }
+      .muted {
+        color: #666;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card" role="main">
+      <h1>Product Discount Calculator</h1>
+      <p class="muted">
+        Nhập thông tin sản phẩm, tính tiền giảm giá và lưu lịch sử.
+      </p>
+
+      <div class="row" style="margin-top: 12px">
+        <div class="col">
+          <label for="name">Tên sản phẩm</label>
+          <input id="name" type="text" placeholder="Ví dụ: Gấu bông" />
+        </div>
+        <div class="col">
+          <label for="price">List price (VNĐ)</label>
+          <input
+            id="price"
+            type="number"
+            step="0.01"
+            min="0"
+            placeholder="100000"
+          />
+        </div>
+        <div class="col">
+          <label for="percent">Discount (%)</label>
+          <input
+            id="percent"
+            type="number"
+            step="0.01"
+            min="0"
+            max="100"
+            placeholder="10"
+          />
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="calc" class="btn-primary">Calculate</button>
+        <button id="save" class="btn-muted">Save to history</button>
+        <button id="clear" class="btn-muted">Clear</button>
+      </div>
+
+      <div id="out" class="result" hidden>
+        <div><strong>Kết quả</strong></div>
+        <div id="discountAmt">Discount amount: —</div>
+        <div id="finalPrice">Final price: —</div>
+      </div>
+
+      <h2 style="margin-top: 18px; font-size: 1rem">History</h2>
+      <table id="history" aria-live="polite">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Tên</th>
+            <th>List price</th>
+            <th>Discount %</th>
+            <th>Discount</th>
+            <th>Final</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <script>
+      const nameEl = document.getElementById("name");
+      const priceEl = document.getElementById("price");
+      const pctEl = document.getElementById("percent");
+      const calcBtn = document.getElementById("calc");
+      const saveBtn = document.getElementById("save");
+      const clearBtn = document.getElementById("clear");
+      const out = document.getElementById("out");
+      const discountAmtEl = document.getElementById("discountAmt");
+      const finalPriceEl = document.getElementById("finalPrice");
+      const historyTbody = document.querySelector("#history tbody");
+
+      function fmt(v) {
+        return Number(v).toLocaleString("vi-VN", { maximumFractionDigits: 2 });
+      }
+
+      function validateInputs() {
+        const price = parseFloat(priceEl.value);
+        const pct = parseFloat(pctEl.value);
+        if (isNaN(price) || price < 0)
+          return { ok: false, msg: "Giá sản phẩm không hợp lệ" };
+        if (isNaN(pct) || pct < 0 || pct > 100)
+          return { ok: false, msg: "Discount phải trong 0–100" };
+        return { ok: true, price, pct };
+      }
+
+      function calculate() {
+        const v = validateInputs();
+        if (!v.ok) {
+          alert(v.msg);
+          return null;
+        }
+        const discount = v.price * (v.pct / 100);
+        const finalPrice = v.price - discount;
+        discountAmtEl.textContent =
+          "Discount amount: " + fmt(discount) + " VNĐ";
+        finalPriceEl.textContent = "Final price: " + fmt(finalPrice) + " VNĐ";
+        out.hidden = false;
+        return {
+          name: nameEl.value || "(no name)",
+          price: v.price,
+          pct: v.pct,
+          discount,
+          finalPrice,
+        };
+      }
+
+      function addHistory(entry) {
+        const tr = document.createElement("tr");
+        const idx = historyTbody.children.length + 1;
+        tr.innerHTML = `<td>${idx}</td>
+        <td>${entry.name}</td>
+        <td>${fmt(entry.price)}</td>
+        <td>${entry.pct}%</td>
+        <td>${fmt(entry.discount)}</td>
+        <td>${fmt(entry.finalPrice)}</td>`;
+        historyTbody.prepend(tr);
+      }
+
+      calcBtn.addEventListener("click", () => calculate());
+      saveBtn.addEventListener("click", () => {
+        const res = calculate();
+        if (res) addHistory(res);
+      });
+      clearBtn.addEventListener("click", () => {
+        nameEl.value = "";
+        priceEl.value = "";
+        pctEl.value = "";
+        out.hidden = true;
+      });
+
+      [nameEl, priceEl, pctEl].forEach((el) => {
+        el.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") calculate();
+        });
+      });
+    </script>
+  </body>
+</html>

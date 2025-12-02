@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Layout Responsive (RWD)</title>
+  <style>
+    :root{
+      --max-w: 1100px;
+      --accent: #2a6;
+      --muted: #666;
+      --gap: 16px;
+      --radius: 8px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      margin:0; color:#222; line-height:1.5;
+      background: #f7f8fb;
+    }
+
+    .container{
+      max-width:var(--max-w);
+      margin:0 auto;
+      padding:24px;
+    }
+
+    /* Header / Nav */
+    header{
+      background:#fff;
+      border-radius:var(--radius);
+      padding:12px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      box-shadow:0 1px 6px rgba(20,20,30,0.04);
+      margin-bottom:var(--gap);
+    }
+    .brand{font-weight:700; color:var(--accent); font-size:1.05rem}
+    nav{display:flex; gap:12px; align-items:center}
+    nav a{
+      text-decoration:none; color:#333; padding:8px 10px; border-radius:6px; font-size:0.95rem;
+    }
+    nav a:hover{background:rgba(42,102,86,0.06)}
+
+    /* Mobile toggle */
+    .nav-toggle{
+      display:none;
+      background:transparent;
+      border:0;
+      font-size:1.25rem;
+    }
+
+    /* Hero */
+    .hero{
+      background:linear-gradient(90deg, #f0fff0, #ffffff);
+      padding:20px;
+      border-radius:var(--radius);
+      margin-bottom:var(--gap);
+      display:flex;
+      gap:20px;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .hero .intro{max-width:60%}
+    .hero h1{margin:0 0 6px; font-size:1.6rem}
+    .hero p{margin:0; color:var(--muted)}
+
+    /* Layout: two columns */
+    .layout{
+      display:grid;
+      grid-template-columns: 1fr 320px;
+      gap:var(--gap);
+      margin-bottom:var(--gap);
+    }
+    main.article{background:#fff; padding:16px; border-radius:8px}
+    aside.sidebar{background:#fff; padding:16px; border-radius:8px}
+
+    /* Cards grid inside main */
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+    }
+    .card{
+      background:#fff; border-radius:8px; padding:12px; box-shadow:0 1px 4px rgba(0,0,0,0.04);
+      display:flex; flex-direction:column; gap:8px;
+    }
+    .card h3{margin:0; font-size:1rem}
+    .card p{margin:0; color:var(--muted); font-size:0.95rem}
+
+    footer{
+      text-align:center; color:var(--muted); font-size:0.9rem; margin-top:8px;
+    }
+
+    /* Responsive rules */
+    @media (max-width: 900px){
+      .hero .intro{max-width:100%}
+      .layout{grid-template-columns: 1fr 260px}
+      .cards{grid-template-columns: repeat(2, 1fr)}
+    }
+
+    @media (max-width: 700px){
+      header{padding:10px}
+      nav{display:none}
+      .nav-toggle{display:block}
+      .layout{grid-template-columns: 1fr; }
+      aside.sidebar{order:2}
+      main.article{order:1}
+      .cards{grid-template-columns: repeat(2, 1fr)}
+    }
+
+    @media (max-width: 420px){
+      .cards{grid-template-columns: 1fr}
+      .hero{flex-direction:column; align-items:flex-start}
+      .hero h1{font-size:1.25rem}
+    }
+
+    /* Mobile nav open state */
+    .mobile-nav{
+      display:none;
+      gap:8px; flex-direction:column; padding:8px 16px;
+    }
+    .mobile-nav a{padding:8px; border-radius:6px}
+    .mobile-nav.show{display:flex; background:#fff; margin-top:8px; border-radius:8px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">MySite</div>
+
+      <nav aria-label="Main navigation" class="desktop-nav">
+        <a href="#">Home</a>
+        <a href="#">Bài tập</a>
+        <a href="#">Tài liệu</a>
+        <a href="#">Liên hệ</a>
+      </nav>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="mobileNav">☰</button>
+    </header>
+
+    <div id="mobileNav" class="mobile-nav" hidden>
+      <a href="#">Home</a>
+      <a href="#">Bài tập</a>
+      <a href="#">Tài liệu</a>
+      <a href="#">Liên hệ</a>
+    </div>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="intro">
+        <h1 id="hero-title">Responsive Layout — RWD</h1>
+        <p>Ví dụ layout đơn giản dùng CSS Grid & Flexbox và media queries để thích ứng trên mọi kích thước màn hình.</p>
+      </div>
+      <div class="cta">
+        <button style="padding:10px 14px; border-radius:8px; background:var(--accent); color:#fff; border:0">Bắt đầu</button>
+      </div>
+    </section>
+
+    <div class="layout">
+      <main class="article" role="main">
+        <h2 style="margin-top:0">Danh sách bài</h2>
+        <div class="cards">
+          <article class="card"><h3>Bài 1</h3><p>Mô tả ngắn về bài tập 1.</p></article>
+          <article class="card"><h3>Bài 2</h3><p>Mô tả ngắn về bài tập 2.</p></article>
+          <article class="card"><h3>Bài 3</h3><p>Mô tả ngắn về bài tập 3.</p></article>
+          <article class="card"><h3>Bài 4</h3><p>Mô tả ngắn về bài tập 4.</p></article>
+          <article class="card"><h3>Bài 5</h3><p>Mô tả ngắn về bài tập 5.</p></article>
+          <article class="card"><h3>Bài 6</h3><p>Mô tả ngắn về bài tập 6.</p></article>
+        </div>
+      </main>
+
+      <aside class="sidebar" role="complementary">
+        <h3>Sidebar</h3>
+        <p style="color:var(--muted)">Liên kết nhanh, thông báo hoặc bộ lọc.</p>
+      </aside>
+    </div>
+
+    <footer>
+      © 2025 — Layout RWD ví dụ
+    </footer>
+  </div>
+
+  <script>
+    // Toggle mobile menu (works on small screens)
+    (function(){
+      const btn = document.querySelector('.nav-toggle');
+      const mobile = document.getElementById('mobileNav');
+      btn.addEventListener('click', ()=>{
+        const open = mobile.classList.toggle('show');
+        mobile.hidden = !open;
+        btn.setAttribute('aria-expanded', String(open));
+      });
+    })();
+  </script>
+</body>
+</html>
