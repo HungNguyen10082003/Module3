@@ -16,5 +16,5 @@ HAVING AVG(Mark) > 15;
 SELECT S.StudentId, S.StudentName, AVG(Mark)
 FROM Student S join Mark M on S.StudentId = M.StudentId
 GROUP BY S.StudentId, S.StudentName
-HAVING AVG(Mark) >= ALL (SELECT AVG(Mark) FROM Mark GROUP BY Mark.StudentId);
+HAVING AVG(Mark) >= ALL (SELECT AVG(Mark) FROM Mark GROUP BY Mark.StudentId);chi_tiet_don_hang
 
