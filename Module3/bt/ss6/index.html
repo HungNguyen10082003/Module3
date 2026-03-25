@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Định dạng văn bản với CSS</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        margin: 0;
+        padding: 20px;
+        color: #222;
+      }
+
+      .container {
+        width: 85%;
+        margin: auto;
+        background-color: white;
+        padding: 20px 30px;
+      }
+
+      h1 {
+        color: #1f4e79;
+        font-size: 36px;
+        font-weight: normal;
+      }
+
+      h2 {
+        color: #1f4e79;
+        font-size: 30px;
+        font-weight: normal;
+        margin-bottom: 5px;
+      }
+
+      .muc-tieu {
+        color: #4f81bd;
+        font-size: 16px;
+      }
+
+      .article {
+        margin-top: 20px;
+        width: 80%;
+      }
+
+      .article h3 {
+        font-size: 48px;
+        margin-bottom: 0;
+      }
+
+      .sub-title {
+        font-size: 20px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+      }
+
+      .article p {
+        font-size: 22px;
+        text-align: justify;
+        text-indent: 40px;
+        line-height: 1.6;
+      }
+
+      .bold {
+        font-weight: bold;
+      }
+
+      .blue {
+        color: blue;
+        font-weight: bold;
+      }
+
+      .goi-y {
+        color: #666;
+        margin-top: 30px;
+      }
+
+      ul {
+        margin-top: 10px;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>[Bài tập] Định dạng văn bản với CSS</h1>
+
+      <h2>Mục tiêu</h2>
+      <p class="muc-tieu">
+        Luyện tập sử dụng các thuộc tính CSS để định dạng văn bản.
+      </p>
+
+      <h2>Yêu cầu</h2>
+      <p>Tạo một tài liệu HTML với văn bản được định dạng như sau:</p>
+
+      <div class="article">
+        <h3>Việt Nam</h3>
+        <p class="sub-title">Bách khoa toàn thư mở Wikipedia</p>
+        <hr />
+
+        <p>
+          <span class="bold">Việt Nam</span>
+          (tên chính thức:
+          <span class="bold">Cộng hòa Xã hội chủ nghĩa Việt Nam</span>) là một
+          quốc gia nằm ở phía đông, ở giữa Lào và Campuchia, thuộc
+          <span class="blue">bán đảo Đông Dương</span>, thuộc khu vực
+          <span class="blue">Đông Nam Á</span> thuộc châu Á.
+        </p>
+
+        <p>
+          Phía bắc Việt Nam giáp với
+          <span class="blue">Trung Quốc</span>, phía tây Việt Nam giáp với
+          <span class="blue">Lào</span> và <span class="blue">Campuchia</span>,
+          phía tây nam giáp vịnh <span class="blue">Thái Lan</span>, phía đông
+          và phía nam giáp <span class="blue">biển Đông</span> và có hơn 4.000
+          hòn đảo, bãi đá ngầm lớn nhỏ, gần và xa bờ, vùng nội thủy, lãnh hải,
+          vùng đặc quyền kinh tế và thềm lục địa thuộc
+          <span class="blue">Chủ quyền Việt Nam</span>
+          xác định gần gấp ba lần diện tích đất liền (khoảng trên 1 triệu km²).
+        </p>
+
+        <p>
+          Việt Nam đã thiết lập mối quan hệ ngoại giao với 178 quốc gia, quan hệ
+          kinh tế – thương mại – đầu tư với trên 224 quốc gia và vùng lãnh thổ,
+          là thành viên
+          <span class="blue">Liên Hợp Quốc</span>,
+          <span class="blue">ASEAN</span>, <span class="blue">APEC</span>,
+          <span class="blue">WTO</span>.
+        </p>
+      </div>
+
+      <p class="goi-y">Gợi ý: Sử dụng các thuộc tính định dạng văn bản như:</p>
+      <ul>
+        <li>text-style</li>
+        <li>text-align</li>
+        <li>font-size</li>
+        <li>text-indentation</li>
+        <li>color</li>
+        <li>...</li>
+      </ul>
+    </div>
+  </body>
+</html>
