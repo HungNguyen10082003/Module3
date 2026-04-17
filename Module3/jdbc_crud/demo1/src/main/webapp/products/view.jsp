@@ -47,9 +47,13 @@
             <span class="detail-value">${product.quantity}</span>
         </div>
 
+        <div class="detail-row">
+            <span class="detail-label">Category:</span>
+            <span class="detail-value">${product.categoryName}</span>
+        </div>
+
         <div style="margin-top: 20px;">
             <a href="${pageContext.request.contextPath}/product?action=edit&id=${product.id}" class="btn btn-edit">✏️ Sửa</a>
-            <a href="${pageContext.request.contextPath}/product?action=delete&id=${product.id}" class="btn btn-delete" onclick="return confirm('Bạn chắc chứ?')">🗑️ Xóa</a>
             <a href="${pageContext.request.contextPath}/product?action=list" class="btn btn-back">← Quay lại</a>
         </div>
     </div>

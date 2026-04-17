@@ -1,42 +1,42 @@
--- Tạo database
 CREATE DATABASE IF NOT EXISTS product_db;
 USE product_db;
 
--- ====== BẢNG PRODUCTS ======
+DROP TABLE IF EXISTS products;
+DROP TABLE IF EXISTS categories;
+
+CREATE TABLE IF NOT EXISTS categories (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL UNIQUE
+);
+
 CREATE TABLE IF NOT EXISTS products (
     id INT AUTO_INCREMENT PRIMARY KEY,
     productName VARCHAR(255) NOT NULL,
     price DOUBLE NOT NULL,
     description TEXT,
     quantity INT NOT NULL DEFAULT 0,
+    category_id INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    CONSTRAINT fk_products_category FOREIGN KEY (category_id) REFERENCES categories(id)
 );
 
--- Thêm dữ liệu mẫu sản phẩm
-INSERT INTO products (productName, price, description, quantity) VALUES
-('Laptop Dell XPS 13', 1200.00, 'Laptop cao cấp với hiệu năng mạnh mẽ', 5),
-('iPhone 15 Pro', 999.00, 'Điện thoại thông minh di động nhất hiện nay', 10),
-('AirPods Pro', 249.00, 'Tai nghe không dây chất lượng cao', 20),
-('Keyboard Mechanical RGB', 150.00, 'Bàn phím cơ học với đèn RGB', 15);
+INSERT INTO categories (name) VALUES
+('Điện thoại'),
+('Laptop'),
+('Phụ kiện'),
+('Thiết bị văn phòng');
 
--- ====== BẢNG USERS ======
-CREATE TABLE IF NOT EXISTS users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    fullName VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    phone VARCHAR(20),
-    country VARCHAR(100) NOT NULL,
-    address TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-
--- Thêm dữ liệu mẫu người dùng
-INSERT INTO users (fullName, email, phone, country, address) VALUES
-('Nguyễn Văn A', 'nguyenvana@gmail.com', '0912345678', 'Việt Nam', '123 Đường Lê Lợi, TP.HCM'),
-('Trần Thị B', 'tranthib@gmail.com', '0987654321', 'Việt Nam', '456 Đường Nguyễn Huệ, Hà Nội'),
-('Phạm Văn C', 'phamvanc@gmail.com', '0901234567', 'Thái Lan', '789 Sukhumvit Road, Bangkok'),
-('Lê Thị D', 'lethid@gmail.com', '0934567890', 'Campuchia', '321 Norodom Blvd, Phnom Penh'),
-('Hoàng Văn E', 'hoangvane@gmail.com', '0945678901', 'Việt Nam', '654 Đường Trần Hưng Đạo, Đà Nẵng'),
-('Võ Thị F', 'vothif@gmail.com', '0956789012', 'Lào', '987 Setthathirat Road, Vientiane');
+INSERT INTO products (productName, price, description, quantity, category_id) VALUES
+('iPhone 15 Pro', 999.00, 'Điện thoại flagship của Apple', 10, 1),
+('Samsung Galaxy S24', 880.00, 'Điện thoại Android cao cấp', 12, 1),
+('Xiaomi 14', 700.00, 'Hiệu năng mạnh, giá tốt', 18, 1),
+('Laptop Dell XPS 13', 1200.00, 'Laptop mỏng nhẹ cho doanh nhân', 5, 2),
+('MacBook Air M3', 1450.00, 'Laptop hiệu năng cao, pin tốt', 7, 2),
+('Asus Vivobook 15', 780.00, 'Laptop phổ thông', 14, 2),
+('AirPods Pro', 249.00, 'Tai nghe chống ồn chủ động', 20, 3),
+('Logitech MX Master 3S', 95.00, 'Chuột không dây cao cấp', 16, 3),
+('Bàn phím cơ Keychron K2', 110.00, 'Bàn phím cơ bluetooth', 11, 3),
+('Máy in HP LaserJet M211', 215.00, 'Máy in laser văn phòng', 9, 4),
+('Máy quét Canon LiDE 300', 125.00, 'Máy scan tài liệu', 8, 4),
+('Máy hủy tài liệu Bonsaii C206', 89.00, 'Thiết bị hủy giấy bảo mật', 6, 4);

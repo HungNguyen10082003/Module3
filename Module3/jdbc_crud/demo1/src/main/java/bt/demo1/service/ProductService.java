@@ -1,13 +1,17 @@
 package bt.demo1.service;
 
+import bt.demo1.model.Category;
+import bt.demo1.model.CategoryGroup;
 import bt.demo1.model.Product;
 import bt.demo1.repository.ProductDAO;
 import java.util.*;
 
 public class ProductService {
-    private ProductDAO productDAO = new ProductDAO();
+    public static final int DEFAULT_PAGE_SIZE = 5;
 
-    public boolean createProduct(String productName, double price, String description, int quantity) {
+    private final ProductDAO productDAO = new ProductDAO();
+
+    public boolean createProduct(String productName, double price, String description, int quantity, int categoryId) {
         if (productName == null || productName.trim().isEmpty()) {
             System.out.println("Tên sản phẩm không được để trống!");
             return false;
@@ -20,19 +24,42 @@ public class ProductService {
             System.out.println("Số lượng không được âm!");
             return false;
         }
-        Product product = new Product(productName, price, description, quantity);
+        if (categoryId <= 0) {
+            System.out.println("Danh mục không hợp lệ!");
+            return false;
+        }
+        Product product = new Product(productName, price, description, quantity, categoryId);
         return productDAO.addProduct(product);
     }
 
-    public List<Product> getAllProducts() {
-        return productDAO.getAllProducts();
+    public List<Product> getProductPage(String keyword, Integer categoryId, int page, int pageSize) {
+        int currentPage = Math.max(page, 1);
+        int size = Math.max(pageSize, 1);
+        int offset = (currentPage - 1) * size;
+        return productDAO.getProductsPaged(normalizeKeyword(keyword), normalizeCategoryId(categoryId), offset, size);
+    }
+
+    public int getTotalProducts(String keyword, Integer categoryId) {
+        return productDAO.countProducts(normalizeKeyword(keyword), normalizeCategoryId(categoryId));
+    }
+
+    public int getTotalPages(String keyword, Integer categoryId, int pageSize) {
+        int total = getTotalProducts(keyword, categoryId);
+        if (total == 0) {
+            return 1;
+        }
+        return (int) Math.ceil((double) total / pageSize);
+    }
+
+    public List<Category> getAllCategories() {
+        return productDAO.getAllCategories();
     }
 
     public Product getProductById(int id) {
         return productDAO.getProductById(id);
     }
 
-    public boolean updateProduct(int id, String productName, double price, String description, int quantity) {
+    public boolean updateProduct(int id, String productName, double price, String description, int quantity, int categoryId) {
         if (productName == null || productName.trim().isEmpty()) {
             System.out.println("Tên sản phẩm không được để trống!");
             return false;
@@ -45,7 +72,12 @@ public class ProductService {
             System.out.println("Số lượng không được âm!");
             return false;
         }
-        Product product = new Product(id, productName, price, description, quantity);
+        if (categoryId <= 0) {
+            System.out.println("Danh mục không hợp lệ!");
+            return false;
+        }
+
+        Product product = new Product(id, productName, price, description, quantity, categoryId);
         return productDAO.updateProduct(product);
     }
 
@@ -53,10 +85,21 @@ public class ProductService {
         return productDAO.deleteProduct(id);
     }
 
-    public List<Product> searchProductsByName(String name) {
-        if (name == null || name.trim().isEmpty()) {
-            return getAllProducts();
+    public List<CategoryGroup> getCategoryGroups() {
+        return productDAO.getCategoryGroups();
+    }
+
+    private String normalizeKeyword(String keyword) {
+        if (keyword == null || keyword.trim().isEmpty()) {
+            return null;
         }
-        return productDAO.searchProductByName(name);
+        return keyword.trim();
+    }
+
+    private Integer normalizeCategoryId(Integer categoryId) {
+        if (categoryId == null || categoryId <= 0) {
+            return null;
+        }
+        return categoryId;
     }
 }

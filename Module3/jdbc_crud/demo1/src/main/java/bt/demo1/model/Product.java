@@ -6,23 +6,37 @@ public class Product {
     private double price;
     private String description;
     private int quantity;
+    private int categoryId;
+    private String categoryName;
 
     public Product() {
     }
 
-    public Product(String productName, double price, String description, int quantity) {
+    public Product(String productName, double price, String description, int quantity, int categoryId) {
         this.productName = productName;
         this.price = price;
         this.description = description;
         this.quantity = quantity;
+        this.categoryId = categoryId;
     }
 
-    public Product(int id, String productName, double price, String description, int quantity) {
+    public Product(int id, String productName, double price, String description, int quantity, int categoryId) {
         this.id = id;
         this.productName = productName;
         this.price = price;
         this.description = description;
         this.quantity = quantity;
+        this.categoryId = categoryId;
+    }
+
+    public Product(int id, String productName, double price, String description, int quantity, int categoryId, String categoryName) {
+        this.id = id;
+        this.productName = productName;
+        this.price = price;
+        this.description = description;
+        this.quantity = quantity;
+        this.categoryId = categoryId;
+        this.categoryName = categoryName;
     }
 
     public int getId() {
@@ -65,6 +79,22 @@ public class Product {
         this.quantity = quantity;
     }
 
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -73,6 +103,8 @@ public class Product {
                 ", price=" + price +
                 ", description='" + description + '\'' +
                 ", quantity=" + quantity +
+                ", categoryId=" + categoryId +
+                ", categoryName='" + categoryName + '\'' +
                 '}';
     }
 }

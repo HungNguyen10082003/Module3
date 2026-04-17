@@ -9,7 +9,7 @@
         body { font-family: Arial, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 40px 20px; }
         .container { max-width: 1000px; margin: 0 auto; }
         h1 { color: white; text-align: center; margin-bottom: 40px; font-size: 32px; }
-        .modules { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .modules { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 20px; justify-content: center; }
         .module { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); }
         .module h2 { color: #333; margin-bottom: 15px; }
         .module p { color: #666; margin-bottom: 20px; }
@@ -30,30 +30,16 @@
             <div class="module">
                 <div class="icon">📦</div>
                 <h2>Quản lý Sản phẩm</h2>
-                <p>Hệ thống quản lý sản phẩm CRUD</p>
+                <p>Ứng dụng quản lý sản phẩm có kết nối DB với category</p>
                 <ul>
-                    <li>Liệt kê sản phẩm</li>
+                    <li>Danh sách sản phẩm có phân trang</li>
                     <li>Thêm sản phẩm mới</li>
                     <li>Chỉnh sửa thông tin</li>
-                    <li>Xóa sản phẩm</li>
-                    <li>Tìm kiếm theo tên</li>
+                    <li>Xóa sản phẩm bằng modal</li>
+                    <li>Tìm kiếm theo tên và category</li>
+                    <li>Danh sách category và sản phẩm theo category</li>
                 </ul>
                 <a href="${pageContext.request.contextPath}/product?action=list">Truy cập →</a>
-            </div>
-
-            <!-- User Management -->
-            <div class="module">
-                <div class="icon">👥</div>
-                <h2>Quản lý Người dùng</h2>
-                <p>Hệ thống quản lý người dùng CRUD</p>
-                <ul>
-                    <li>Liệt kê người dùng</li>
-                    <li>Thêm người dùng</li>
-                    <li>Chỉnh sửa thông tin</li>
-                    <li>Xóa người dùng</li>
-                    <li>Tìm kiếm theo country</li>
-                </ul>
-                <a href="${pageContext.request.contextPath}/user?action=list">Truy cập →</a>
             </div>
         </div>
     </div>

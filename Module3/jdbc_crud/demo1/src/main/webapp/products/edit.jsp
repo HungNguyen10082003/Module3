@@ -10,7 +10,7 @@
         form { border: 1px solid #ddd; padding: 20px; border-radius: 5px; }
         .form-group { margin-bottom: 15px; }
         label { display: block; font-weight: bold; margin-bottom: 5px; }
-        input, textarea { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+        input, textarea, select { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
         textarea { resize: vertical; min-height: 100px; }
         button { background-color: #2196F3; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; margin-right: 10px; }
         button:hover { background-color: #0b7dda; }
@@ -47,6 +47,15 @@
         <div class="form-group">
             <label for="quantity">Số lượng:</label>
             <input type="number" id="quantity" name="quantity" value="${product.quantity}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="categoryId">Category:</label>
+            <select id="categoryId" name="categoryId" required>
+                <c:forEach var="category" items="${categories}">
+                    <option value="${category.id}" ${product.categoryId == category.id ? 'selected' : ''}>${category.name}</option>
+                </c:forEach>
+            </select>
         </div>
 
         <button type="submit">Cập nhật</button>
