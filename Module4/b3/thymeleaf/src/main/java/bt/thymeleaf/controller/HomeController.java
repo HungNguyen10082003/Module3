@@ -1,4 +1,4 @@
-package bt.thymleafproduct.controller;
+package bt.thymeleaf.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,8 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 
-    @GetMapping("/")
+    @GetMapping({"/", "/index.html"})
     public String home() {
-        return "redirect:/products";
+        return "redirect:/customers";
     }
+
 }
