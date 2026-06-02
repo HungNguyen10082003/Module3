@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Settings</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        label { display: block; margin-top: 10px; font-weight: bold; }
+        .small { font-weight: normal; }
+        textarea { width: 400px; height: 120px; }
+        .btn { margin-top: 12px; }
+    </style>
+</head>
+<body>
+<h1>Settings</h1>
+
+<form action="/settings" method="post">
+    <label>Languages</label>
+    <select name="language">
+        <option th:selected="${settings.language == 'English'}">English</option>
+        <option th:selected="${settings.language == 'Vietnamese'}">Vietnamese</option>
+        <option th:selected="${settings.language == 'Japanese'}">Japanese</option>
+        <option th:selected="${settings.language == 'Chinese'}">Chinese</option>
+    </select>
+
+    <label>Page Size: <span class="small">Show
+        <select name="pageSize">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+        </select>
+        emails per page</span>
+    </label>
+
+    <label>
+        <input type="checkbox" name="spamFilter" /> Enable spams filter
+    </label>
+
+    <label>Signature:</label>
+    <textarea name="signature"></textarea>
+
+    <div class="btn">
+        <button type="submit">Update</button>
+        <button type="button" onclick="window.location='/'">Cancel</button>
+    </div>
+</form>
+
+<h2>Current configuration</h2>
+<ul>
+    <li><strong>Language:</strong> <span th:text="${settings.language}"></span></li>
+    <li><strong>Page size:</strong> <span th:text="${settings.pageSize}"></span></li>
+    <li><strong>Spam filter:</strong> <span th:text="${settings.spamFilter} ? 'Enabled' : 'Disabled'"></span></li>
+    <li><strong>Signature:</strong><pre th:text="${settings.signature}"></pre></li>
+</ul>
+
+</body>
+</html>
