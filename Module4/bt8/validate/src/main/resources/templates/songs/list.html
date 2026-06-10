@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý bài hát</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<main class="page-shell">
+    <section class="hero-card">
+        <div>
+            <p class="eyebrow">Thư viện nhạc cá nhân</p>
+            <h1>Quản lý bài hát</h1>
+            <p class="subtle">Thêm mới và cập nhật thông tin bài hát với validate ở phía server.</p>
+        </div>
+        <a class="primary-button" th:href="@{/songs/create}">Thêm bài hát</a>
+    </section>
+
+    <section class="panel">
+        <div class="panel-header">
+            <h2>Danh sách bài hát</h2>
+        </div>
+
+        <div class="empty-state" th:if="${#lists.isEmpty(songs)}">
+            Chưa có bài hát nào. Hãy thêm bài hát đầu tiên.
+        </div>
+
+        <table class="data-table" th:if="${!#lists.isEmpty(songs)}">
+            <thead>
+            <tr>
+                <th>Tên bài hát</th>
+                <th>Nghệ sĩ</th>
+                <th>Thể loại</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="song : ${songs}">
+                <td th:text="${song.title}"></td>
+                <td th:text="${song.artist}"></td>
+                <td th:text="${song.genre}"></td>
+                <td class="actions">
+                    <a th:href="@{/songs/{id}/edit(id=${song.id})}">Sửa</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+</body>
+</html>

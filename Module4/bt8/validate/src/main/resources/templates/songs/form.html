@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${pageTitle}">Biểu mẫu bài hát</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<main class="page-shell narrow-shell">
+    <section class="panel form-panel">
+        <div class="panel-header">
+            <div>
+                <p class="eyebrow">Thông tin bài hát</p>
+                <h1 th:text="${pageTitle}">Biểu mẫu bài hát</h1>
+            </div>
+            <a th:href="@{/songs}">Quay lại danh sách</a>
+        </div>
+
+        <form class="form-grid" th:action="@{${formAction}}" th:object="${songForm}" method="post">
+            <input type="hidden" th:if="${songId != null}" name="songId" th:value="${songId}">
+
+            <label>
+                <span>Tên bài hát</span>
+                <input type="text" th:field="*{title}" maxlength="800" placeholder="Nhập tên bài hát">
+                <small class="error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></small>
+            </label>
+
+            <label>
+                <span>Nghệ sĩ thể hiện</span>
+                <input type="text" th:field="*{artist}" maxlength="300" placeholder="Nhập tên nghệ sĩ">
+                <small class="error" th:if="${#fields.hasErrors('artist')}" th:errors="*{artist}"></small>
+            </label>
+
+            <label>
+                <span>Thể loại nhạc</span>
+                <textarea th:field="*{genre}" maxlength="1000" rows="4" placeholder="Nhập thể loại, ngăn cách bằng dấu phẩy"></textarea>
+                <small class="error" th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}"></small>
+            </label>
+
+            <div class="actions-row">
+                <button class="primary-button" type="submit" th:text="${submitLabel}">Lưu</button>
+            </div>
+        </form>
+    </section>
+</main>
+</body>
+</html>
