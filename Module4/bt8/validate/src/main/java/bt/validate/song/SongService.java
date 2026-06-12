@@ -6,7 +6,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SongService {
+public class
+SongService {
 
     private final SongRepository songRepository;
 

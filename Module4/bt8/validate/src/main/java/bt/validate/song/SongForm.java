@@ -9,7 +9,7 @@ public class SongForm {
     @NotBlank(message = "Tên bài hát không được để trống")
     @Size(max = 800, message = "Tên bài hát không được vượt quá 800 ký tự")
     @Pattern(
-            regexp = "^[\\p{L}\\s]+$",
+            regexp = "^[\\p{L}\\p{N}\\s]+$",
         message = "Tên bài hát không được chứa ký tự đặc biệt"
     )
     private String title;
@@ -17,7 +17,7 @@ public class SongForm {
     @NotBlank(message = "Nghệ sĩ thể hiện không được để trống")
     @Size(max = 300, message = "Nghệ sĩ thể hiện không được vượt quá 300 ký tự")
     @Pattern(
-            regexp = "^[\\p{L}\\s]+$",
+            regexp = "^[\\p{L}\\p{N}\\s]+$",
         message = "Nghệ sĩ thể hiện không được chứa ký tự đặc biệt"
     )
     private String artist;
