@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh toán</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<header class="topbar">
+    <div class="brand">
+        <span class="brand-mark">FH</span>
+        <div>
+            <div class="brand-name">Flower House</div>
+            <div class="brand-subtitle">Thanh toán đơn hàng</div>
+        </div>
+    </div>
+    <nav class="nav">
+        <a class="nav-link" th:href="@{/products}">Sản phẩm</a>
+        <a class="nav-link" th:href="@{/cart}">Giỏ hàng <span class="badge" th:text="${cartCount}">0</span></a>
+        <a class="nav-link active" th:href="@{/checkout}">Thanh toán</a>
+    </nav>
+</header>
+
+<main class="page-shell checkout-layout">
+    <section class="checkout-form-panel">
+        <p class="eyebrow">Bước 4</p>
+        <h1>Hoàn tất thanh toán</h1>
+        <form th:action="@{/checkout}" method="post" th:object="${checkoutForm}" class="checkout-form">
+            <label>
+                Họ và tên
+                <input type="text" th:field="*{fullName}" placeholder="Nguyễn Văn A" required>
+            </label>
+            <label>
+                Số điện thoại
+                <input type="tel" th:field="*{phone}" placeholder="0900000000" required>
+            </label>
+            <label>
+                Địa chỉ nhận hàng
+                <input type="text" th:field="*{address}" placeholder="123 Lê Lợi, Quận 1" required>
+            </label>
+            <label>
+                Ghi chú
+                <textarea th:field="*{note}" rows="4" placeholder="Giao giờ hành chính nếu có thể"></textarea>
+            </label>
+            <button class="button primary" type="submit">Xác nhận thanh toán</button>
+        </form>
+    </section>
+
+    <aside class="summary-panel">
+        <h2>Đơn hàng của bạn</h2>
+        <div class="summary-items">
+            <div class="summary-item" th:each="item : ${cartItems}">
+                <span th:text="${item.product.name}">Sản phẩm</span>
+                <strong th:text="${item.lineTotal} + ' đ'">0 đ</strong>
+            </div>
+        </div>
+        <div class="summary-total">
+            <span>Tổng thanh toán</span>
+            <strong th:text="${cartTotal} + ' đ'">0 đ</strong>
+        </div>
+    </aside>
+</main>
+</body>
+</html>

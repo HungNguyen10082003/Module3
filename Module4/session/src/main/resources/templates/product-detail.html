@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết sản phẩm</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<header class="topbar">
+    <div class="brand">
+        <span class="brand-mark">FH</span>
+        <div>
+            <div class="brand-name">Flower House</div>
+            <div class="brand-subtitle">Sản phẩm chi tiết</div>
+        </div>
+    </div>
+    <nav class="nav">
+        <a class="nav-link" th:href="@{/products}">Sản phẩm</a>
+        <a class="nav-link" th:href="@{/cart}">Giỏ hàng <span class="badge" th:text="${cartCount}">0</span></a>
+        <a class="nav-link" th:href="@{/checkout}">Thanh toán</a>
+    </nav>
+</header>
+
+<main class="page-shell detail-layout">
+    <section class="detail-panel">
+        <div class="detail-image">
+            <img th:src="@{${product.imageUrl}}" th:alt="${product.name}">
+        </div>
+        <div class="detail-meta">
+            <p class="eyebrow">Bước 2</p>
+            <h1 th:text="${product.name}">Sản phẩm 1</h1>
+            <p class="sku">Mã SP: <strong th:text="${product.sku}">4564</strong></p>
+            <div class="price-stack">
+                <span class="old-price" th:text="${product.formattedOldPrice}">400.000 đ</span>
+                <strong class="price large" th:text="${product.formattedPrice}">350.000 đ</strong>
+            </div>
+            <p class="description" th:text="${product.teaser}">Mô tả</p>
+            <form class="buy-form" th:action="@{/products/{id}/add(id=${product.id})}" method="post">
+                <label>
+                    Số lượng
+                    <select name="quantity">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </label>
+                <button class="button primary buy-now" type="submit">Mua ngay</button>
+            </form>
+        </div>
+    </section>
+
+    <aside class="benefit-panel">
+        <h2>Ưu đãi và cam kết</h2>
+        <ol class="benefit-list">
+            <li th:each="feature : ${product.features}" th:text="${feature}">Cam kết</li>
+        </ol>
+    </aside>
+</main>
+</body>
+</html>

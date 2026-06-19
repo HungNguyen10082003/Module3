@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ hàng</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<header class="topbar">
+    <div class="brand">
+        <span class="brand-mark">FH</span>
+        <div>
+            <div class="brand-name">Flower House</div>
+            <div class="brand-subtitle">Giỏ hàng của bạn</div>
+        </div>
+    </div>
+    <nav class="nav">
+        <a class="nav-link" th:href="@{/products}">Sản phẩm</a>
+        <a class="nav-link active" th:href="@{/cart}">Giỏ hàng <span class="badge" th:text="${cartCount}">0</span></a>
+        <a class="nav-link" th:href="@{/checkout}">Thanh toán</a>
+    </nav>
+</header>
+
+<main class="page-shell">
+    <section class="section-header">
+        <div>
+            <p class="eyebrow">Bước 3</p>
+            <h1>Giỏ hàng</h1>
+        </div>
+        <a class="button ghost" th:href="@{/products}">Tiếp tục mua sắm</a>
+    </section>
+
+    <p class="flash" th:if="${message}" th:text="${message}"></p>
+
+    <section class="cart-card" th:if="${!#lists.isEmpty(cartItems)}">
+        <article class="cart-row" th:each="item : ${cartItems}">
+            <div class="cart-image">
+                <img th:src="@{${item.product.imageUrl}}" th:alt="${item.product.name}">
+            </div>
+            <div class="cart-info">
+                <h2 th:text="${item.product.name}">Sản phẩm 1</h2>
+                <p>Mã SP: <strong th:text="${item.product.sku}">4564</strong></p>
+                <p>Đơn giá: <strong th:text="${item.product.formattedPrice}">350.000 đ</strong></p>
+                <div class="cart-actions">
+                    <form th:action="@{/cart/items/{id}/quantity(id=${item.product.id})}" method="post" class="quantity-form">
+                        <label>Số lượng</label>
+                        <select name="quantity" onchange="this.form.submit()">
+                            <option th:each="n : ${#numbers.sequence(1, 10)}"
+                                    th:value="${n}"
+                                    th:text="${n}"
+                                    th:selected="${n == item.quantity}">1</option>
+                        </select>
+                    </form>
+                    <form th:action="@{/cart/items/{id}/remove(id=${item.product.id})}" method="post">
+                        <button class="link-danger" type="submit">Xóa sản phẩm</button>
+                    </form>
+                </div>
+            </div>
+            <div class="cart-total" th:text="${item.lineTotal} + ' đ'">0 đ</div>
+        </article>
+
+        <footer class="cart-footer">
+            <div>
+                <span>Tổng cộng</span>
+                <strong th:text="${cartTotal} + ' đ'">0 đ</strong>
+            </div>
+            <a class="button primary" th:href="@{/checkout}">Thanh toán</a>
+        </footer>
+    </section>
+
+    <section class="empty-state" th:if="${#lists.isEmpty(cartItems)}">
+        <h2>Giỏ hàng trống</h2>
+        <p>Hãy quay lại trang sản phẩm và thêm ít nhất một món vào giỏ.</p>
+        <a class="button primary" th:href="@{/products}">Xem sản phẩm</a>
+    </section>
+</main>
+</body>
+</html>

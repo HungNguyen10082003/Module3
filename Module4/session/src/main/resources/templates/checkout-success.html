@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặt hàng thành công</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<main class="page-shell success-page">
+    <section class="success-card">
+        <p class="eyebrow">Thanh toán thành công</p>
+        <h1>Đơn hàng đã được ghi nhận</h1>
+        <p>Mã đơn: <strong th:text="${receipt.orderCode}">DH000</strong></p>
+        <p>Khách hàng: <strong th:text="${receipt.customer.fullName}">Tên</strong></p>
+        <p>Điện thoại: <strong th:text="${receipt.customer.phone}">SĐT</strong></p>
+        <p>Địa chỉ: <strong th:text="${receipt.customer.address}">Địa chỉ</strong></p>
+        <p>Tổng tiền: <strong th:text="${receipt.total} + ' đ'">0 đ</strong></p>
+        <a class="button primary" th:href="@{/products}">Mua tiếp</a>
+    </section>
+</main>
+</body>
+</html>
