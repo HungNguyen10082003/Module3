@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết sách</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #667eea;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        .book-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .book-info p {
+            margin: 15px 0;
+            font-size: 1.1em;
+            color: #333;
+        }
+        .book-info strong {
+            color: #667eea;
+            display: inline-block;
+            width: 120px;
+        }
+        .quantity-status {
+            font-size: 1.3em;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .quantity-status.available {
+            background: #d4edda;
+            color: #155724;
+        }
+        .quantity-status.unavailable {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 12px 30px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        .btn-primary:hover:not(:disabled) {
+            background: #764ba2;
+            transform: scale(1.05);
+        }
+        .btn-primary:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: scale(1.05);
+        }
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Chi tiết sách</h1>
+        
+        <div class="book-info">
+            <p><strong>Tên sách:</strong> <span th:text="${book.title}">Tên sách</span></p>
+            <p><strong>Tác giả:</strong> <span th:text="${book.author}">Tên tác giả</span></p>
+            <p><strong>Số lượng còn lại:</strong> <span th:text="${book.quantity}">5</span></p>
+        </div>
+        
+        <div class="quantity-status" th:classappend="${book.quantity > 0 ? 'available' : 'unavailable'}">
+            <span th:if="${book.quantity > 0}">Sách còn có thể mượn</span>
+            <span th:if="${book.quantity == 0}">Sách đã hết</span>
+        </div>
+        
+        <div th:if="${book.quantity == 0}" class="warning">
+            Hiện tại sách này đã hết. Vui lòng chọn cuốn khác hoặc quay lại sau.
+        </div>
+        
+        <div class="btn-group">
+            <form th:action="@{/books/{id}/borrow(id=${book.id})}" method="POST">
+                <button type="submit" class="btn btn-primary" th:disabled="${book.quantity == 0}">
+                    Mượn sách này
+                </button>
+            </form>
+            
+            <a href="/books" class="btn btn-secondary">Quay lại danh sách</a>
+        </div>
+    </div>
+</body>
+</html>

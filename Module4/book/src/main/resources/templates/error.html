@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lỗi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 600px;
+        }
+        h1 {
+            color: #dc3545;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+        .error-title {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .error-message {
+            font-size: 1.1em;
+            color: #666;
+            margin: 20px 0;
+            line-height: 1.6;
+            background: #fff5f5;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #dc3545;
+            text-align: left;
+        }
+        .timestamp {
+            color: #999;
+            font-size: 0.9em;
+            margin-top: 15px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 12px 30px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-primary {
+            background: #dc3545;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #c82333;
+            transform: scale(1.05);
+        }
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Đã xảy ra lỗi</h1>
+        
+        <div class="error-title" th:text="${errorTitle}">Tiêu đề lỗi</div>
+        
+        <div class="error-message" th:text="${errorMessage}">
+            Đã xảy ra lỗi. Vui lòng thử lại.
+        </div>
+        
+        <div class="timestamp" th:if="${timestamp}">
+            Thời gian: <span th:text="${#temporals.format(timestamp, 'dd/MM/yyyy HH:mm:ss')}">Thời gian</span>
+        </div>
+        
+        <div class="btn-group">
+            <a href="/books" class="btn btn-primary">Quay lại thư viện</a>
+            <a href="javascript:history.back()" class="btn btn-secondary">Quay lại</a>
+        </div>
+    </div>
+</body>
+</html>

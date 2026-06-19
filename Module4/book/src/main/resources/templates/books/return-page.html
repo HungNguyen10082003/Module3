@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trả sách</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            max-width: 500px;
+            width: 100%;
+        }
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 2em;
+            text-align: center;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 0.95em;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+            font-size: 1.05em;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        input[type="text"]::placeholder {
+            color: #999;
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 12px 30px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-primary {
+            background: #667eea;
+            color: white;
+            flex: 1;
+            min-width: 120px;
+        }
+        .btn-primary:hover {
+            background: #764ba2;
+            transform: scale(1.05);
+        }
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: scale(1.05);
+        }
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .info-box p {
+            color: #0c5aa0;
+            margin: 5px 0;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Trả sách</h1>
+        <p class="subtitle">Nhập mã mượn để trả sách</p>
+        
+        <div class="info-box">
+            <p><strong>Lưu ý:</strong> Khi mượn sách, bạn đã nhận được một mã gồm 5 chữ số.</p>
+            <p><strong>Ví dụ:</strong> 12345</p>
+        </div>
+        
+        <form method="POST" action="/books/return">
+            <div class="form-group">
+                <label for="borrowCode">Mã mượn</label>
+                <input type="text" 
+                       id="borrowCode" 
+                       name="borrowCode" 
+                       placeholder="Nhập mã 5 chữ số" 
+                       required 
+                       maxlength="5"
+                       pattern="[0-9]{5}">
+            </div>
+            
+            <div class="btn-group">
+                <button type="submit" class="btn btn-primary">Trả sách</button>
+                <a href="/books" class="btn btn-secondary">Hủy</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
